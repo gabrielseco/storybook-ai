@@ -7,10 +7,10 @@ export const i18nConfig = {
   languages: ['es', 'en'],
   translations: {
     es: {
-      common: commonES,
+      common: commonES
     },
     en: {
-      common: commonEN,
+      common: commonEN
     }
   },
   fallbackLng: 'en',

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { ControlledEditor } from '@monaco-editor/react';
 
+import { Grid } from '@components/grid';
+
 //eslint-disable-next-line
 export default function Home() {
   const [isEditorReady, setIsEditorReady] = React.useState(false);
@@ -24,15 +26,29 @@ export default function Home() {
       >
         Show value
       </button>
-      <ControlledEditor
-        height="90vh"
-        language="javascript"
-        value={value}
-        onChange={handleEditorChange}
-        editorDidMount={handleEditorDidMount}
-      />
-
-      <pre>Result</pre>
+      <Grid>
+        <Grid.Column col={6}>
+          <ControlledEditor
+            theme="dark"
+            height="100vh"
+            language="javascript"
+            value={value}
+            onChange={handleEditorChange}
+            editorDidMount={handleEditorDidMount}
+          />
+        </Grid.Column>
+        <Grid.Column col={6}>
+          <ControlledEditor
+            theme="dark"
+            height="100vh"
+            language="javascript"
+            value={value}
+            onChange={handleEditorChange}
+            editorDidMount={handleEditorDidMount}
+            options={{ readOnly: true }}
+          />
+        </Grid.Column>
+      </Grid>
     </React.Fragment>
   );
 }
