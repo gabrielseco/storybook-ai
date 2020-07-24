@@ -1,0 +1,11 @@
+@import "~@styles/support/main";
+
+$box-shadow: rem(2) rem(12) rem(26) rem(6) rgba(0, 0, 0, 0.7);
+
+.panel {
+  background: $white;
+  border-radius: rem(3);
+  box-shadow: $box-shadow;
+  min-width: rem(350);
+  padding: $spacer-5 $spacer-4;
+}

@@ -1,0 +1,68 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint:js": "front-linter js -- --fix --presets=javascript,react",
+    "lint:ts": "front-linter js -- --fix --presets=typescript,react",
+    "lint:sass": "front-linter sass",
+    "storybook": "start-storybook -p 5000"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^3.4.2",
+    "@rogal/classnames": "^1.0.0-beta.4",
+    "@rogal/react-translate": "^1.0.0-beta.16",
+    "axios": "^0.19.2",
+    "next": "9.4.4",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-monaco-editor": "^0.39.1"
+  },
+  "devDependencies": {
+    "@rogal/addon-react-translate": "^1.0.0-beta.5",
+    "@rogal/front-linter": "3.0.0-beta.5",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
+    "@storybook/addon-viewport": "^5.3.19",
+    "@storybook/preset-scss": "^1.0.2",
+    "@storybook/preset-typescript": "^3.0.0",
+    "@storybook/react": "^5.3.19",
+    "@types/react": "^16.9.43",
+    "babel-loader": "^8.1.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "sass": "^1.26.10",
+    "storybook-addon-next-router": "^1.0.1",
+    "typescript": "^3.9.6"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/@rogal/front-linter/typescript-react-eslint.js"
+    ]
+  },
+  "stylelint": {
+    "extends": [
+      "./node_modules/@rogal/front-linter/.stylelintrc.js"
+    ]
+  },
+  "lint-staged": {
+    "*.{jsx, js}": [
+      "npm run lint:js -- --staged"
+    ],
+    "*.{tsx, ts}": [
+      "npm run lint:ts -- --staged"
+    ],
+    "*.{scss}": [
+      "npm run lint:sass -- --fix --staged"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged"
+    }
+  }
+}

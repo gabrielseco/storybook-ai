@@ -1,0 +1,21 @@
+// Mixin for easy to use mediaqueries
+/* --------------How to use---------------- */
+//    @include media(media-md) {
+//      property: value;
+//    }
+/* ---------------------------------------- */
+@mixin media($range) {
+  @if $range == media-xs { // 0 - 575
+    @media (max-width: #{$width-sm - 1}) { @content; }
+  } @else if $range == media-sm { //576
+    @media (min-width: $width-sm) { @content; }
+  } @else if $range == media-md { //768
+    @media (min-width: #{$width-md}) { @content; }
+  } @else if $range == media-lg { //1024
+    @media (min-width: $width-lg) { @content; }
+  } @else if $range == media-xl { //1200
+    @media (min-width: $width-xl) { @content; }
+  } @else if $range == media-xxl { //1440
+    @media (min-width: $width-xxl) { @content; }
+  }
+}

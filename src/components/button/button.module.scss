@@ -1,0 +1,53 @@
+@import "~@styles/support/main";
+
+$github-bg-color: #1A1414;
+$github-border-color: #181516;
+$github-txt-color: $white;
+
+$github-bg-color-hover: #211E1E;
+$github-border-color-hover: #0C0C0C;
+
+.button {
+  align-items: center;
+  background: $github-bg-color;
+  border-color: $github-border-color;
+  border-radius: rem(2);
+  color: $github-txt-color;
+  cursor: pointer;
+  display: flex;
+  font-size: rem(18);
+  height: $spacer-3 * 8;
+  text-decoration: none;
+  transition: 1s all;
+  width: 100%;
+
+  &:hover {
+    background: $github-bg-color-hover;
+    border-color: $github-border-color-hover;
+  }
+
+  &--icon {
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &__icon {
+    display: block;
+    padding: $spacer-3 $spacer-4;
+
+    svg {
+      fill: $white;
+    }
+  }
+
+  &__text {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+}

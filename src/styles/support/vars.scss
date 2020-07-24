@@ -1,0 +1,12 @@
+$base-size: 16;
+
+// Breakpoint widths
+$width-xs: 0 !default;
+// Small screen / phone
+$width-sm: 544px !default; // stylelint-disable-line
+// Medium screen / tablet
+$width-md: 768px !default; // stylelint-disable-line
+// Large screen / desktop (980 + (16 * 2)) <= container + gutters
+$width-lg: 1012px !default; // stylelint-disable-line
+// Extra large screen / wide desktop
+$width-xl: 1280px !default; // stylelint-disable-line

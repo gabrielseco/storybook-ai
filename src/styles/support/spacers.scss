@@ -1,0 +1,21 @@
+$spacer-0: 0 !default;
+$spacer-1: rem(2);
+$spacer-2: rem(4);
+$spacer-3: rem(8);
+$spacer-4: rem(16);
+$spacer-5: rem(24);
+$spacer-6: rem(32);
+$spacer-7: rem(48);
+$spacer-8: rem(64);
+
+$spacers: (
+  $spacer-0,
+  $spacer-1,
+  $spacer-2,
+  $spacer-3,
+  $spacer-4,
+  $spacer-5,
+  $spacer-6,
+  $spacer-7,
+  $spacer-8,
+);

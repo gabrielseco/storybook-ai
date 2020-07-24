@@ -1,0 +1,19 @@
+@for $i from 1 through length($spacers) {
+  $size: #{nth($spacers, $i)};
+  $scale: #{$i - 1};  // 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+  // Set a #{$size} margin to all sides
+  .m-#{$scale} { margin: #{$size}; }
+  // Set a #{$size} margin on the top
+  .mt-#{$scale} { margin-top: #{$size}; }
+  // Set a #{$size} margin on the right
+  .mr-#{$scale} { margin-right: #{$size}; }
+  // Set a #{$size} margin on the bottom
+  .mb-#{$scale} { margin-bottom: #{$size}; }
+  // Set a #{$size} margin on the left
+  
+  .ml-#{$scale} { margin-left: #{$size}; }
+}
+
+.no-margin {
+  margin: 0;
+}

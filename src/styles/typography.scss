@@ -1,0 +1,88 @@
+$h1-mobile-size: rem(26);
+$h2-mobile-size: rem(22);
+$h3-mobile-size: rem(18);
+
+$h1-size: rem(32);
+$h2-size: rem(24);
+$h3-size: rem(20);
+$h4-size: rem(16);
+$h5-size: rem(14);
+$h6-size: rem(12);
+
+@mixin h1 {
+  font-size: $h1-mobile-size;
+  @include media(media-md) { font-size: $h1-size; }
+}
+
+@mixin h2 {
+  font-size: $h2-mobile-size;
+  @include media(media-md) { font-size: $h2-size; }
+}
+
+@mixin h3 {
+  font-size: $h3-mobile-size;
+  @include media(media-md) { font-size: $h3-size; }
+}
+
+@mixin h4 {
+  font-size: $h4-size;
+}
+
+@mixin h5 {
+  font-size: $h5-size;
+}
+
+@mixin h6 {
+  font-size: $h6-size;
+}
+
+h1,
+.h1 {
+  @include h1();
+}
+
+h2,
+.h2 {
+  @include h2();
+}
+
+h3,
+.h3 {
+  @include h3();
+}
+
+h4,
+.h4 {
+  @include h4();
+}
+
+h5,
+.h5 {
+  @include h5();
+}
+
+h6,
+.h6 {
+  @include h6();
+}
+
+h2 {
+  font-weight: 200;
+  margin-bottom: $spacer-3;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Varta", sans-serif;
+}
