@@ -15,6 +15,8 @@
     "@monaco-editor/react": "^3.4.2",
     "@rogal/classnames": "^1.0.0-beta.4",
     "@rogal/react-translate": "^1.0.0-beta.16",
+    "acorn": "^7.3.1",
+    "acorn-walk": "^7.2.0",
     "axios": "^0.19.2",
     "next": "9.4.4",
     "react": "16.13.1",
