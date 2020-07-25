@@ -124,10 +124,8 @@ export default function Home() {
   };
 
   const parseJS = () => {
-    const parsedNodes = parseJavascriptToArrayNodes(value);
-
     const generatedStorybookComponent = formatJs(
-      generateStorybook(parsedNodes)
+      generateStorybook(parseJavascriptToArrayNodes(value))
     );
 
     setOutputValue(generatedStorybookComponent);
