@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Head from 'next/head';
 import { ControlledEditor } from '@monaco-editor/react';
 import * as acorn from 'acorn';
 import * as walk from 'acorn-walk';
@@ -134,6 +135,9 @@ export default function Home() {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>Storybook AI</title>
+      </Head>
       <Grid className="mt-3 mb-3">
         <Grid.Column col={3} columnStart={9}>
           <Button onClick={parseJS} disabled={!isEditorReady}>
