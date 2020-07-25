@@ -11,6 +11,10 @@
   grid-column: 2 span;
 }
 
+.col-3 {
+  grid-column: 3 span;
+}
+
 .col-4 {
   grid-column: 4 span;
 }
@@ -25,4 +29,9 @@
 
 .center {
   align-items: center;
+}
+
+.col-start-9 {
+  grid-column-end: 13;
+  grid-column-start: 9;
 }

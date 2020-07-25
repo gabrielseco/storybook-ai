@@ -5,10 +5,11 @@ import styles from './button.module.scss';
 
 const classNames = ClassNames(styles);
 
-interface ButtonProps extends React.AnchorHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   as?: React.ElementType;
   icon?: React.ReactNode;
+  disabled?: boolean;
 }
 export const Button = ({
   as = 'button',
@@ -19,6 +20,7 @@ export const Button = ({
   const Component = as;
   return (
     <Component
+      disabled
       className={classNames({ 'button': true, 'button--icon': !children })}
       {...props}
     >

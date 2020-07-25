@@ -6,6 +6,7 @@ import prettier from 'prettier/standalone';
 import parserBabel from 'prettier/parser-babel';
 
 import { Grid } from '@components/grid';
+import { Button } from '@components/button';
 
 const formatJs = (code) => {
   return prettier.format(code, { parser: 'babel', plugins: [parserBabel] });
@@ -133,9 +134,14 @@ export default function Home() {
 
   return (
     <React.Fragment>
-      <button onClick={parseJS} disabled={!isEditorReady}>
-        Parse value
-      </button>
+      <Grid className="mt-3 mb-3">
+        <Grid.Column col={3} columnStart={9}>
+          <Button onClick={parseJS} disabled={!isEditorReady}>
+            Parse value
+          </Button>
+        </Grid.Column>
+      </Grid>
+
       <Grid>
         <Grid.Column col={6}>
           <ControlledEditor
