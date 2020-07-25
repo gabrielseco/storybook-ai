@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint:js": "front-linter js -- --fix --presets=javascript,react",
     "lint:ts": "front-linter js -- --fix --presets=typescript,react",
