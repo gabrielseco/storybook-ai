@@ -16,13 +16,13 @@ const formatJs = (code) => {
 const getValueEditor = () => {
   return formatJs(`
 /* 
-I accept an object like
+// I accept an object like
 const PROPS = {
   message: 'hello this is my message',
   count: 5,
 } 
 
-Also I accept a variable name called config so you can configure the name
+// Also I accept a variable name called config so you can configure the name
 const config = {
   name: 'FloatingComponent'
 };
