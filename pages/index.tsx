@@ -21,44 +21,81 @@ const PROPS = {
   message: 'hello this is my message',
   count: 5,
 } 
+
+Also I accept a variable name called config so you can configure the name
+const config = {
+  name: 'FloatingComponent'
+};
 */`);
 };
 
-const commonTemplate = `
+const commonTemplate = (name = 'Component') => `
 import React from 'react';
 import { text, number } from '@storybook/addon-knobs';
-import { Component } from './index';
+import { ${name} } from './index';
 
 export default {
-  title: 'Component',
-  component: Component,
+  title: '${name}',
+  component: ${name},
 };
 `;
 
-const parseJavascriptToArrayNodes = (code) => {
-  const parsedJS = acorn.parse(code);
+const parseObjectToArrayNodes = (
+  code: acorn.Node
+): { key: string; value: string; type: string }[] => {
+  const variables = findVariablesInCode(code);
+  if (variables.length > 0) {
+    const filteredProperties = variables.filter((node) => {
+      return node.id.name !== 'config';
+    });
 
-  let nodes = [];
+    const properties = filteredProperties[0].init.properties;
 
-  walk.simple(parsedJS, {
-    ObjectExpression(node: any) {
-      nodes.push(node.properties);
+    const parsedNodes = properties.map((node) => {
+      return {
+        key: node.key.name,
+        value: node.value.value,
+        type: typeof node.value.value
+      };
+    });
+
+    return parsedNodes;
+  }
+
+  return [];
+};
+
+const findVariablesInCode = (code: acorn.Node) => {
+  const declarationNodes = [];
+  walk.simple(code, {
+    VariableDeclaration(node: any) {
+      declarationNodes.push([...node.declarations]);
     }
   });
 
-  nodes = JSON.parse(JSON.stringify(nodes));
+  const mergedArray = declarationNodes.reduce((acc, value) => {
+    return [...acc, ...value];
+  }, []);
 
-  nodes = nodes[0];
+  return mergedArray;
+};
 
-  const parsedNodes = nodes.map((node) => {
-    return {
-      key: node.key.name,
-      value: node.value.value,
-      type: typeof node.value.value
-    };
+const parseComponentName = (code) => {
+  const variables = findVariablesInCode(code);
+
+  const ComponentVariable = variables.find((node) => {
+    return node.id.name === 'config';
   });
 
-  return parsedNodes;
+  if (ComponentVariable) {
+    const propertyName = ComponentVariable.init.properties.find(
+      (property) => property.key.name === 'name'
+    );
+
+    return propertyName.value.value;
+  }
+
+  return undefined;
 };
 
 const getTypeFn = (type) => {
@@ -95,14 +132,18 @@ const generateComponentRendering = (nodes) => {
     .join('');
 };
 
-const generateStorybook = (nodes) => {
+const generateStorybook = (
+  nodes,
+  options: { name: string } = { name: 'Component' }
+) => {
+  const name = options.name.slice(0, 1).toUpperCase() + options.name.slice(1);
   return `
-    ${commonTemplate}
+    ${commonTemplate(name)}
 
-    export const ComponentDemo = () => {
+    export const ${name}Demo = () => {
       ${generateStorybookFields(nodes)}
       return (
-        <Component ${generateComponentRendering(nodes)} />
+        <${name} ${generateComponentRendering(nodes)} />
       )
      
     }
@@ -124,8 +165,16 @@ export default function Home() {
   };
 
   const parseJS = () => {
+    const code = acorn.parse(value);
+
+    const componentName = parseComponentName(code);
+    const options = componentName
+      ? {
+          name: componentName
+        }
+      : undefined;
     const generatedStorybookComponent = formatJs(
-      generateStorybook(parseJavascriptToArrayNodes(value))
+      generateStorybook(parseObjectToArrayNodes(code), options)
     );
 
     setOutputValue(generatedStorybookComponent);
